@@ -91,6 +91,15 @@ rasqal_engine_rowsort_row_compare(void* user_data, const void *a, const void *b)
     if(!result)
       /* duplicate, so return that */
       return 0;
+
+
+	if (!rcd->order_conditions_sequence) {
+		result = rasqal_literal_array_compare(row_a->values,
+		row_b->values,
+		NULL,
+		row_a->size,
+		rcd->compare_flags);
+	}
   }
   
   /* now order it */
