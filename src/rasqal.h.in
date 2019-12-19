@@ -39,35 +39,35 @@ extern "C" {
  *
  * Format: major * 10000 + minor * 100 + release
  */
-#define RASQAL_VERSION @RASQAL_VERSION_DECIMAL@
+#define RASQAL_VERSION 20016
 
 /**
  * RASQAL_VERSION_STRING:
  *
  * Rasqal library version string
  */
-#define RASQAL_VERSION_STRING "@VERSION@"
+#define RASQAL_VERSION_STRING "2.0.16"
 
 /**
  * RASQAL_VERSION_MAJOR:
  *
  * Rasqal library major version
  */
-#define RASQAL_VERSION_MAJOR @RASQAL_VERSION_MAJOR@
+#define RASQAL_VERSION_MAJOR 2
 
 /**
  * RASQAL_VERSION_MINOR:
  *
  * Rasqal library minor version
  */
-#define RASQAL_VERSION_MINOR @RASQAL_VERSION_MINOR@
+#define RASQAL_VERSION_MINOR 0
 
 /**
  * RASQAL_VERSION_RELEASE:
  *
  * Rasqal library release
  */
-#define RASQAL_VERSION_RELEASE @RASQAL_VERSION_RELEASE@
+#define RASQAL_VERSION_RELEASE 16
 
 
 /**
@@ -112,12 +112,12 @@ extern "C" {
 #include <Redland/raptor.h>
 #endif
 
-#if @HAVE_SYS_TIME_H@
-#include <sys/time.h>
-#endif
-#if @HAVE_TIME_H@
-#include <time.h>
-#endif
+//#if @HAVE_SYS_TIME_H@
+//#include <sys/time.h>
+//#endif
+//#if @HAVE_TIME_H@
+//#include <time.h>
+//#endif
 
 /* Public statics */
 
@@ -202,7 +202,7 @@ extern const char * const rasqal_home_url_string;
  *
  * Version of Raptor that Rasqal was configured against.
  */
-#define RASQAL_RAPTOR_VERSION @RAPTOR_VERSION_DEC@
+#define RASQAL_RAPTOR_VERSION "2.0.16"
 
 
 /* Public structures */

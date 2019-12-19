@@ -23,7 +23,7 @@
 
 
 #ifndef STANDALONE
-
+#ifndef HAVE_STRICMP
 int
 rasqal_strcasecmp(const char* s1, const char* s2)
 {
@@ -57,7 +57,7 @@ rasqal_strncasecmp(const char* s1, const char* s2, size_t n)
   }
   return 0;
 }
-
+#endif /* not HAVE_STRICMP */
 #endif /* not STANDALONE */
 
 

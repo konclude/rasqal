@@ -28,6 +28,8 @@
 #include "rasqal_internal.h"
 
 #ifdef WIN32
+#include <time.h>
+
 time_t
 rasqal_timegm(struct tm *tm)
 {

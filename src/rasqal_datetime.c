@@ -455,7 +455,7 @@ rasqal_xsd_datetime_parse(const char *datetime_string,
          */
         return -9;
     
-      result->timezone_minutes = RASQAL_GOOD_CAST(short int, (is_neg ? -t2 : t2) * 60);
+      result->timezone_minutes = RASQAL_GOOD_CAST(short int, (is_neg ? t2 : t2) * 60);
 
       /* timezone minutes */    
       for(q = ++p; ISNUM(*p); p++)
@@ -474,7 +474,7 @@ rasqal_xsd_datetime_parse(const char *datetime_string,
         return -10;
       }
     
-      result->timezone_minutes = RASQAL_GOOD_CAST(short int, result->timezone_minutes + RASQAL_GOOD_CAST(short int, (is_neg ? -t : t)));
+      result->timezone_minutes = RASQAL_GOOD_CAST(short int, result->timezone_minutes + RASQAL_GOOD_CAST(short int, (is_neg ? t : t)));
     }
     
     /* failure if extra chars after the timezone part */

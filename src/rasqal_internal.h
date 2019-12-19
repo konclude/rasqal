@@ -212,6 +212,10 @@ void rasqal_system_free(void *ptr);
 #endif
 
 
+#ifdef WIN32
+#include <win32_rasqal_config.h>
+#endif
+
 typedef struct rasqal_query_execution_factory_s rasqal_query_execution_factory;
 typedef struct rasqal_query_language_factory_s rasqal_query_language_factory;
 

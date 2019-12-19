@@ -35,12 +35,14 @@ extern "C" {
 #include <rasqal_config.h>
 #endif
 
-#define sv_new rasqal_sv_new
-#define sv_free rasqal_sv_free
-#define sv_set_option rasqal_sv_set_option
-#define sv_get_line rasqal_sv_get_line
-#define sv_get_header rasqal_sv_get_header
-#define sv_parse_chunk rasqal_sv_parse_chunk
+#include "sv.h"
+
+//#define sv_new rasqal_sv_new
+//#define sv_free rasqal_sv_free
+//#define sv_set_option rasqal_sv_set_option
+//#define sv_get_line rasqal_sv_get_line
+//#define sv_get_header rasqal_sv_get_header
+//#define sv_parse_chunk rasqal_sv_parse_chunk
 
 #ifdef RASQAL_DEBUG
 #define SV_DEBUG 1

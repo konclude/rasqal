@@ -369,10 +369,10 @@ typedef union {
  * where x is any hexadecimal digit and y is one of 8, 9, a, or b.
  */
 static void
-rasqal_uuid_generate(rasqal_evaluation_context *eval_context, uuid_t ptr)
+rasqal_uuid_generate(rasqal_evaluation_context *eval_context, uuid_t* ptr)
 {
-  int16_t* out = ptr.w;
-  unsigned char* outc = ptr.b;
+  int16_t* out = ptr->w;
+  unsigned char* outc = ptr->b;
   unsigned int i;
   for(i = 0; i < (RASQAL_UUID_LEN / sizeof(int16_t)); i++) {
     *out++ = rasqal_random_irand(eval_context->random);
@@ -423,7 +423,7 @@ rasqal_expression_evaluate_uuid(rasqal_expression *e,
   uuid_make(data, UUID_MAKE_V1);
 #endif
 #ifdef RASQAL_UUID_INTERNAL
-  rasqal_uuid_generate(eval_context, data);
+  rasqal_uuid_generate(eval_context, &data);
 #endif
 
   if(want_uri)

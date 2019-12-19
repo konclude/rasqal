@@ -33,6 +33,10 @@ extern "C" {
 #define WIN32_LEAN_AND_MEAN 1
 #include <windows.h>
 
+#ifdef WIN32
+#include <win32_rasqal_config.h>
+#endif
+
 /* getopt is not in standard win32 C library - define if we have it */
 /* #define HAVE_GETOPT_H 1 */
 

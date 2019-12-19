@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C059DC71-BDD9-4546-9910-110D960822C7}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="C:\Data\win-flex-bison\custom_build_rules\win_flex_bison_custom_build.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.25431.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\src;..\..\raptor\src;..\..\librdf;..\..\..\pcre\6.4\pcre-6.4-src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;RASQAL_INTERNAL;_MT;PCRE_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <PrecompiledHeaderOutputFile />
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>CompileAsC</CompileAs>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>raptor.lib;librdf.lib;pcre.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\..\raptor\win32\Debug;..\..\librdf\win32\Debug;..\..\..\pcre\6.4\pcre-6.4-src\pcre\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>c:\bin\Debug/rasqal.pdb</ProgramDatabaseFile>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>c:\bin\Debug/rasqal.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\libsv\src;..\src;..\..\raptor\src;..\..\librdf;..\..\..\pcre\6.4\pcre-6.4-src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>RAPTOR_STATIC;RASQAL_STATIC;WIN32;_DEBUG;_WINDOWS;_USRDLL;RASQAL_INTERNAL;_MT;PCRE_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>CompileAsC</CompileAs>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>Libsv.lib;raptor2.lib;C:\Data\vcpkg\vcpkg\installed\x64-windows\lib\libxslt.lib;C:\Data\vcpkg\vcpkg\installed\x64-windows\lib\libxml2.lib;C:\Data\vcpkg\vcpkg\installed\x64-windows\lib\libcurl.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\..\libsv\win32\Debug;..\..\raptor\win32\Debug;..\..\librdf\win32\Debug;..\..\..\pcre\6.4\pcre-6.4-src\pcre\Debug;$(VcpkgRoot)debug\lib;$(VcpkgRoot)debug\lib\manual-link;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pgd</ProgramDatabaseFile>
+      <LinkStatus>
+      </LinkStatus>
+      <AdditionalManifestDependencies>%(AdditionalLibraryDirectories)</AdditionalManifestDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TypeLibraryName>c:\bin\Debug/rasqal.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <Lib>
+      <AdditionalDependencies>libsv.lib;raptor2.lib</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>..\..\libsv\win32\Debug;..\..\raptor\win32\Debug</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <AdditionalIncludeDirectories>..\src;..\..\raptor\src;..\..\librdf;..\..\..\pcre\6.4\pcre-6.4-src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;RASQAL_INTERNAL;_MT;PCRE_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <PrecompiledHeaderOutputFile />
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>CompileAsC</CompileAs>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>raptor.lib;librdf.lib;pcre.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\..\raptor\win32\Release;..\..\librdf\win32\Release;..\..\..\pcre\6.4\pcre-6.4-src\pcre\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\Release/rasqal.pdb</ProgramDatabaseFile>
+      <ImportLibrary>.\Release/rasqal.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/rasqal.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <AdditionalIncludeDirectories>..\..\libsv\src;..\src;..\..\raptor\src;..\..\librdf;..\..\..\pcre\6.4\pcre-6.4-src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>RAPTOR_STATIC;RASQAL_STATIC;WIN32;NDEBUG;_WINDOWS;_USRDLL;RASQAL_INTERNAL;_MT;PCRE_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>CompileAsC</CompileAs>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>raptor.lib;librdf.lib;pcre.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\..\raptor\win32\Release;..\..\librdf\win32\Release;..\..\..\pcre\6.4\pcre-6.4-src\pcre\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\Release/rasqal.pdb</ProgramDatabaseFile>
+      <ImportLibrary>.\Release/rasqal.lib</ImportLibrary>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TypeLibraryName>.\Release/rasqal.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Lib>
+      <AdditionalLibraryDirectories>..\..\libsv\win32\Release;..\..\raptor\win32\Release</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libsv.lib;raptor2.lib</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\gettimeofday.c" />
+    <ClCompile Include="..\src\rasqal_algebra.c" />
+    <ClCompile Include="..\src\rasqal_bindings.c" />
+    <ClCompile Include="..\src\rasqal_dataset.c" />
+    <ClCompile Include="..\src\rasqal_data_graph.c" />
+    <ClCompile Include="..\src\rasqal_datetime.c" />
+    <ClCompile Include="..\src\rasqal_decimal.c" />
+    <ClCompile Include="..\src\rasqal_digest.c" />
+    <ClCompile Include="..\src\rasqal_digest_md5.c" />
+    <ClCompile Include="..\src\rasqal_digest_sha1.c" />
+    <ClCompile Include="..\src\rasqal_double.c" />
+    <ClCompile Include="..\src\rasqal_engine.c" />
+    <ClCompile Include="..\src\rasqal_engine_algebra.c" />
+    <ClCompile Include="..\src\rasqal_engine_sort.c" />
+    <ClCompile Include="..\src\rasqal_expr.c" />
+    <ClCompile Include="..\src\rasqal_expr_datetimes.c" />
+    <ClCompile Include="..\src\rasqal_expr_evaluate.c" />
+    <ClCompile Include="..\src\rasqal_expr_numerics.c" />
+    <ClCompile Include="..\src\rasqal_expr_strings.c" />
+    <ClCompile Include="..\src\rasqal_feature.c" />
+    <ClCompile Include="..\src\rasqal_format_html.c" />
+    <ClCompile Include="..\src\rasqal_format_json.c" />
+    <ClCompile Include="..\src\rasqal_format_rdf.c" />
+    <ClCompile Include="..\src\rasqal_format_sparql_xml.c" />
+    <ClCompile Include="..\src\rasqal_format_sv.c" />
+    <ClCompile Include="..\src\rasqal_format_table.c" />
+    <ClCompile Include="..\src\rasqal_formula.c" />
+    <ClCompile Include="..\src\rasqal_general.c" />
+    <ClCompile Include="..\src\rasqal_graph.c" />
+    <ClCompile Include="..\src\rasqal_graph_pattern.c" />
+    <ClCompile Include="..\src\rasqal_iostream.c" />
+    <ClCompile Include="..\src\rasqal_literal.c" />
+    <ClCompile Include="..\src\rasqal_map.c" />
+    <ClCompile Include="..\src\rasqal_ntriples.c" />
+    <ClCompile Include="..\src\rasqal_prefix.c" />
+    <ClCompile Include="..\src\rasqal_projection.c" />
+    <ClCompile Include="..\src\rasqal_query.c" />
+    <ClCompile Include="..\src\rasqal_query_results.c" />
+    <ClCompile Include="..\src\rasqal_query_test.c" />
+    <ClCompile Include="..\src\rasqal_query_transform.c" />
+    <ClCompile Include="..\src\rasqal_query_write.c" />
+    <ClCompile Include="..\src\rasqal_random.c" />
+    <ClCompile Include="..\src\rasqal_raptor.c" />
+    <ClCompile Include="..\src\rasqal_regex.c" />
+    <ClCompile Include="..\src\rasqal_results_compare.c" />
+    <ClCompile Include="..\src\rasqal_result_formats.c" />
+    <ClCompile Include="..\src\rasqal_row.c" />
+    <ClCompile Include="..\src\rasqal_rowsource.c" />
+    <ClCompile Include="..\src\rasqal_rowsource_aggregation.c" />
+    <ClCompile Include="..\src\rasqal_rowsource_assignment.c" />
+    <ClCompile Include="..\src\rasqal_rowsource_bindings.c" />
+    <ClCompile Include="..\src\rasqal_rowsource_distinct.c" />
+    <ClCompile Include="..\src\rasqal_rowsource_empty.c" />
+    <ClCompile Include="..\src\rasqal_rowsource_filter.c" />
+    <ClCompile Include="..\src\rasqal_rowsource_graph.c" />
+    <ClCompile Include="..\src\rasqal_rowsource_groupby.c" />
+    <ClCompile Include="..\src\rasqal_rowsource_having.c" />
+    <ClCompile Include="..\src\rasqal_rowsource_join.c" />
+    <ClCompile Include="..\src\rasqal_rowsource_project.c" />
+    <ClCompile Include="..\src\rasqal_rowsource_rowsequence.c" />
+    <ClCompile Include="..\src\rasqal_rowsource_service.c" />
+    <ClCompile Include="..\src\rasqal_rowsource_slice.c" />
+    <ClCompile Include="..\src\rasqal_rowsource_sort.c" />
+    <ClCompile Include="..\src\rasqal_rowsource_triples.c" />
+    <ClCompile Include="..\src\rasqal_rowsource_union.c" />
+    <ClCompile Include="..\src\rasqal_row_compatible.c" />
+    <ClCompile Include="..\src\rasqal_service.c" />
+    <ClCompile Include="..\src\rasqal_solution_modifier.c" />
+    <ClCompile Include="..\src\rasqal_sort.c" />
+    <ClCompile Include="..\src\rasqal_triple.c" />
+    <ClCompile Include="..\src\rasqal_triples_source.c" />
+    <ClCompile Include="..\src\rasqal_update.c" />
+    <ClCompile Include="..\src\rasqal_variable.c" />
+    <ClCompile Include="..\src\rasqal_xsd_datatypes.c" />
+    <ClCompile Include="..\src\snprintf.c" />
+    <ClCompile Include="..\src\sparql_lexer.c" />
+    <ClCompile Include="..\src\sparql_parser.c" />
+    <ClCompile Include="..\src\strcasecmp.c" />
+    <ClCompile Include="..\src\timegm.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\mtwist_config.h" />
+    <ClInclude Include="..\src\rasqal.h" />
+    <ClInclude Include="..\src\rasqal_internal.h" />
+    <ClInclude Include="..\src\rdql_common.h" />
+    <ClInclude Include="..\src\rdql_lexer.h" />
+    <ClInclude Include="..\src\rdql_parser.h" />
+    <ClInclude Include="..\src\sparql_common.h" />
+    <ClInclude Include="..\src\sparql_lexer.h" />
+    <ClInclude Include="..\src\sparql_parser.h" />
+    <ClInclude Include="..\src\sparql_parser.tab.h" />
+    <ClInclude Include="..\src\ssort.h" />
+    <ClInclude Include="..\src\sv_config.h" />
+    <ClInclude Include="..\src\win32_rasqal_config.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Flex Include="..\src\sparql_lexer.l" />
+  </ItemGroup>
+  <ItemGroup>
+    <Bison Include="..\src\sparql_parser.y" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="C:\Data\win-flex-bison\custom_build_rules\win_flex_bison_custom_build.targets" />
+  </ImportGroup>
+</Project>

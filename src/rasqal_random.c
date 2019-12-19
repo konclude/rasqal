@@ -233,7 +233,7 @@ rasqal_random_seed(rasqal_random *random_object, unsigned int seed)
 int
 rasqal_random_irand(rasqal_random *random_object)
 {
-  int r;
+  int r = 0;
 #ifdef RANDOM_ALGO_RANDOM_R
   int32_t result;
 #endif
