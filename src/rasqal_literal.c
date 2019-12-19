@@ -4403,13 +4403,13 @@ rasqal_literal_array_compare(rasqal_literal** values_a,
 #if defined(RASQAL_DEBUG) && RASQAL_DEBUG > 1
         RASQAL_DEBUG2("Got one NULL literal comparison, returning %d\n", result);
 #endif
-      }
-      break;
-    }
-    
-    result = rasqal_literal_compare(literal_a, literal_b,
-                                    compare_flags | RASQAL_COMPARE_URI,
-                                    &error);
+		break;
+	  }
+	} else {
+		result = rasqal_literal_compare(literal_a, literal_b,
+			compare_flags | RASQAL_COMPARE_URI,
+			&error);
+	}
     if(error) {
 #if defined(RASQAL_DEBUG) && RASQAL_DEBUG > 1
       RASQAL_DEBUG2("Got literal comparison error at expression %d, returning 0\n", i);
