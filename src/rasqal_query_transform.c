@@ -1439,15 +1439,63 @@ rasqal_graph_patterns_join(rasqal_graph_pattern *dest_gp,
   if(src_gp->triples) {
     int start_c = src_gp->start_column;
     int end_c = src_gp->end_column;
-    
-    /* if this is our first triple, save a free/alloc */
-    dest_gp->triples = src_gp->triples;
-    src_gp->triples = NULL;
-    
-    if((dest_gp->start_column < 0) || start_c < dest_gp->start_column)
-      dest_gp->start_column = start_c;
-    if((dest_gp->end_column < 0) || end_c > dest_gp->end_column)
-      dest_gp->end_column = end_c;
+
+	if (!dest_gp->triples || dest_gp->start_column < 0 || dest_gp->end_column < 0 || start_c == dest_gp->end_column + 1 || end_c == dest_gp->start_column + 1) {
+
+		/* if this is our first triple, save a free/alloc */
+		dest_gp->triples = src_gp->triples;
+		src_gp->triples = NULL;
+
+		if ((dest_gp->start_column < 0) || start_c < dest_gp->start_column)
+			dest_gp->start_column = start_c;
+		if ((dest_gp->end_column < 0) || end_c > dest_gp->end_column)
+			dest_gp->end_column = end_c;
+	} else {
+		int i;
+		rasqal_triple* triple;
+		int seq_size = raptor_sequence_size(dest_gp->triples);
+		if (seq_size == dest_gp->end_column + 1) {
+			// copy src_gp triples such that all triples are together
+			for (i = src_gp->start_column; i <= src_gp->end_column; ++i) {
+				triple = (rasqal_triple*)raptor_sequence_get_at(src_gp->triples, i);
+				triple = rasqal_new_triple_from_triple(triple);
+				raptor_sequence_push(dest_gp->triples, triple);
+				dest_gp->end_column++;
+			}
+		} else if (seq_size == src_gp->end_column + 1) {
+			// copy src_gp triples such that all triples are together
+			int tmp_end_c = end_c;
+			for (i = dest_gp->start_column; i <= dest_gp->end_column; ++i) {
+				triple = (rasqal_triple*)raptor_sequence_get_at(dest_gp->triples, i);
+				triple = rasqal_new_triple_from_triple(triple);
+				raptor_sequence_push(src_gp->triples, triple);
+				tmp_end_c++;
+			}
+			start_c = dest_gp->start_column;
+			end_c = dest_gp->end_column;
+			dest_gp->start_column = src_gp->start_column;
+			dest_gp->end_column = tmp_end_c;
+		} else {
+			// copy triples from both gps
+			int tmp_end_c = seq_size;
+			dest_gp->start_column = seq_size;
+			for (i = src_gp->start_column; i <= src_gp->end_column; ++i) {
+				triple = (rasqal_triple*)raptor_sequence_get_at(src_gp->triples, i);
+				triple = rasqal_new_triple_from_triple(triple);
+				raptor_sequence_push(dest_gp->triples, triple);
+				tmp_end_c++;
+			}
+			for (i = dest_gp->start_column; i <= dest_gp->end_column; ++i) {
+				triple = (rasqal_triple*)raptor_sequence_get_at(dest_gp->triples, i);
+				triple = rasqal_new_triple_from_triple(triple);
+				raptor_sequence_push(src_gp->triples, triple);
+				tmp_end_c++;
+			}
+			dest_gp->end_column = tmp_end_c;
+		}
+		src_gp->triples = NULL;
+	}
+
     
 #if defined(RASQAL_DEBUG) && RASQAL_DEBUG > 1
     RASQAL_DEBUG3("Moved triples from columns %d to %d\n", start_c, end_c);
