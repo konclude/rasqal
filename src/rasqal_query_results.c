@@ -376,10 +376,9 @@ rasqal_query_results_execute_with_engine(rasqal_query_results* query_results,
   /* set executed flag early to enable cleanup on error */
   query_results->executed = 1;
 
-  /* ensure stored results are present if ordering or distincting are being done */
+  /* ensure stored results are present if ordering is being done */
   query_results->store_results = (store_results ||
-                                  rasqal_query_get_order_conditions_sequence(query) ||
-                                  rasqal_query_get_distinct(query));
+                                  rasqal_query_get_order_conditions_sequence(query));
   
   ex_data_size = query_results->execution_factory->execution_data_size;
   if(ex_data_size > 0) {
