@@ -1432,7 +1432,7 @@ void rasqal_print_row_compatible(FILE *handle, rasqal_row_compatible* map);
 
 /* rasqal_triples_source.c */
 rasqal_triples_source* rasqal_new_triples_source(rasqal_query* query);
-int rasqal_reset_triple_meta(rasqal_triple_meta* m);
+int rasqal_reset_triple_meta(rasqal_triple_meta* m, rasqal_triple* t);
 void rasqal_free_triples_source(rasqal_triples_source *rts);
 int rasqal_triples_source_triple_present(rasqal_triples_source *rts, rasqal_triple *t);
 int rasqal_triples_source_support_feature(rasqal_triples_source *rts, rasqal_triples_source_feature feature);
