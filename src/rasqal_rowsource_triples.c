@@ -167,8 +167,9 @@ rasqal_triples_rowsource_finish(rasqal_rowsource* rowsource, void *user_data)
   if(con->triple_meta) {
     for(i = con->start_column; i <= con->end_column; i++) {
       rasqal_triple_meta *m;
-      m = &con->triple_meta[i - con->start_column];
-      rasqal_reset_triple_meta(m);
+	  rasqal_triple* t = (rasqal_triple*)raptor_sequence_get_at(con->triples, t);
+	  m = &con->triple_meta[i - con->start_column];
+      rasqal_reset_triple_meta(m, t);
     }
 
     RASQAL_FREE(rasqal_triple_meta, con->triple_meta);
@@ -220,7 +221,7 @@ rasqal_triples_rowsource_get_next_row(rasqal_rowsource* rowsource,
                     con->column);
 
       /* reset this column and move to next match in previous column */
-      rasqal_reset_triple_meta(m);
+      rasqal_reset_triple_meta(m, t);
       con->column--;
       if(con->column < con->start_column) {
         error = RASQAL_ENGINE_FINISHED;
@@ -325,15 +326,17 @@ rasqal_triples_rowsource_reset(rasqal_rowsource* rowsource, void *user_data)
 {
   rasqal_triples_rowsource_context *con;
   int column;
+  rasqal_triple* t;
   
   con = (rasqal_triples_rowsource_context*)user_data;
 
   con->column = con->start_column;
   for(column = con->start_column; column <= con->end_column; column++) {
     rasqal_triple_meta *m;
-    
+	t = (rasqal_triple*)raptor_sequence_get_at(con->triples, column);
+
     m = &con->triple_meta[column - con->start_column];
-    rasqal_reset_triple_meta(m);
+    rasqal_reset_triple_meta(m, t);
   }
 
   return 0;
