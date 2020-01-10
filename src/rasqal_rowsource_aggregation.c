@@ -525,6 +525,7 @@ rasqal_aggregation_rowsource_read_row(rasqal_rowsource* rowsource,
   if(con->finished)
     return NULL;
   
+  rasqal_rowsource_reset(con->rowsource);
 
   /* Iterate over input rows until last row seen or group done */
   while(1) {
