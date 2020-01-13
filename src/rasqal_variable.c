@@ -371,6 +371,77 @@ rasqal_free_variables_table(rasqal_variables_table* vt)
 }
 
 
+
+
+void rasqal_free_binding(rasqal_literal* l) {
+}
+
+int rasqal_binding_print(rasqal_literal* l, FILE* fh) {
+	return 0;
+}
+
+
+raptor_sequence*
+rasqal_variables_table_take_bindings(rasqal_variables_table* vt) {
+
+	int i;
+	raptor_sequence* bindings_sequence = raptor_new_sequence((raptor_data_free_handler)rasqal_free_binding,
+		(raptor_data_print_handler)rasqal_binding_print);
+
+
+	for (i = 0; i < vt->variables_count; i++) {
+		rasqal_literal* lit;
+		rasqal_variable* var = (rasqal_variable*)raptor_sequence_get_at(vt->variables_sequence, i);
+		lit = var->value;
+		if (lit) {
+			lit = rasqal_new_literal_from_literal(lit);
+			rasqal_variable_set_value(var, NULL);
+		}
+		raptor_sequence_push(bindings_sequence, lit);
+	}
+	for (i = 0; i < vt->anon_variables_count; i++) {
+		rasqal_literal* lit;
+		rasqal_variable* var = (rasqal_variable*)raptor_sequence_get_at(vt->anon_variables_sequence, i);
+		lit = var->value;
+		if (lit) {
+			lit = rasqal_new_literal_from_literal(lit);
+			rasqal_variable_set_value(var, NULL);
+		}
+		raptor_sequence_push(bindings_sequence, lit);
+	}
+
+
+	return bindings_sequence;
+}
+
+
+
+void 
+rasqal_variables_table_install_bindings(rasqal_variables_table* vt, raptor_sequence* bindings_sequence) {
+
+	int i;
+	int size = raptor_sequence_size(bindings_sequence);
+
+	for (i = 0; i < vt->variables_count && i < size; i++) {
+		rasqal_literal* lit;
+		rasqal_variable* var;
+		lit = (rasqal_literal*)raptor_sequence_get_at(bindings_sequence, i);
+		var = (rasqal_variable*)raptor_sequence_get_at(vt->variables_sequence, i);
+		rasqal_variable_set_value(var, lit);
+	}
+	for (i = vt->variables_count; i < vt->variables_count + vt->anon_variables_count && i < size; i++) {
+		rasqal_literal* lit;
+		rasqal_variable* var;
+		lit = (rasqal_literal*)raptor_sequence_get_at(bindings_sequence, i);
+		var = (rasqal_variable*)raptor_sequence_get_at(vt->anon_variables_sequence, i - vt->variables_count);
+		rasqal_variable_set_value(var, lit);
+	}
+
+	raptor_free_sequence(bindings_sequence);
+}
+
+
+
 /**
  * rasqal_variables_table_add_variable:
  * @vt: #rasqal_variables_table to associate the variable with

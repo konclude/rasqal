@@ -206,9 +206,11 @@ rasqal_union_rowsource_read_row(rasqal_rowsource* rowsource, void *user_data)
     fputs("\n", stderr);
 #endif
 
-    if(!row)
-      con->state = 1;
-    else {
+	if (!row) {
+		con->state = 1;
+		// reset left such that variable bindings (from triple sources, assignments, etc.) are reseted
+		rasqal_rowsource_reset(con->left);
+	} else {
       /* otherwise: rows from left are correct order but wrong size */
       if(rasqal_row_expand_size(row, rowsource->size)) {
         rasqal_free_row(row);
@@ -270,6 +272,8 @@ rasqal_union_rowsource_read_all_rows(rasqal_rowsource* rowsource,
     con->failed = 1;
     return NULL;
   }
+
+  rasqal_rowsource_reset(con->left);
 
   seq2 = rasqal_rowsource_read_all_rows(con->right);
   if(!seq2) {

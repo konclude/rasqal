@@ -140,6 +140,9 @@ rasqal_assignment_rowsource_reset(rasqal_rowsource* rowsource, void *user_data)
   rasqal_assignment_rowsource_context *con;
   con = (rasqal_assignment_rowsource_context*)user_data;
 
+
+  rasqal_variable_set_value(con->var, NULL);
+
   con->offset = 0;
   
   return 0;
