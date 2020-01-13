@@ -251,9 +251,34 @@ rasqal_rowsource_read_row(rasqal_rowsource *rowsource)
     return NULL;
 
   if(rowsource->flags & RASQAL_ROWSOURCE_FLAGS_SAVED_ROWS) {
+	int i;
+
+
     /* return row from saved rows sequence at offset */
     row = (rasqal_row*)raptor_sequence_get_at(rowsource->rows_sequence,
                                               rowsource->offset++);
+
+
+	// set variable bindings such that, for examples, aggregates can correctly be evaluated
+	for (i = 0; i < rowsource->size; i++) {
+		rasqal_literal *value;
+		rasqal_variable* v;
+		v = rasqal_rowsource_get_variable_by_offset(rowsource, i);
+		if (v) {
+			if (row) {
+				value = row->values[i];
+			} else {
+				value = NULL;
+			}
+			if (value != v->value) {
+				if (value) {
+					value = rasqal_new_literal_from_literal(value);
+				}
+				rasqal_variable_set_value(v, value);
+			}
+		}
+	}
+
 #ifdef RASQAL_DEBUG
     RASQAL_DEBUG3("%s rowsource %p returned saved row:  ",
                   rowsource->handler->name, rowsource);

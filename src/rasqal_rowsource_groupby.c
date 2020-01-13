@@ -245,6 +245,7 @@ static int
 rasqal_groupby_rowsource_process(rasqal_rowsource* rowsource,
                                  rasqal_groupby_rowsource_context* con)
 {
+  raptor_sequence* bindings;
   /* already processed */
   if(con->processed)
     return 0;
@@ -268,6 +269,8 @@ rasqal_groupby_rowsource_process(rasqal_rowsource* rowsource,
   raptor_avltree_set_print_handler(con->tree,
                                    rasqal_rowsource_groupby_tree_print_node);
   
+
+  bindings = rasqal_variables_table_take_bindings(rowsource->query->vars_table);
 
   while(1) {
     rasqal_row* row;
@@ -330,6 +333,8 @@ rasqal_groupby_rowsource_process(rasqal_rowsource* rowsource,
 
     }
   }
+
+  rasqal_variables_table_install_bindings(rowsource->query->vars_table, bindings);
 
 #ifdef RASQAL_DEBUG
   fputs("Grouping ", DEBUG_FH);
