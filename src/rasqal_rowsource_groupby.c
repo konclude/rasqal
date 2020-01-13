@@ -268,7 +268,6 @@ rasqal_groupby_rowsource_process(rasqal_rowsource* rowsource,
   raptor_avltree_set_print_handler(con->tree,
                                    rasqal_rowsource_groupby_tree_print_node);
   
-  rasqal_rowsource_reset(con->rowsource);
 
   while(1) {
     rasqal_row* row;

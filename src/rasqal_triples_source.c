@@ -344,30 +344,29 @@ rasqal_triples_match_is_end(struct rasqal_triples_match_s* rtm)
  * Return value: number of parts of the triple that were reset (0..4)
  **/
 int
-rasqal_reset_triple_meta(rasqal_triple_meta* m, rasqal_triple* t)
+rasqal_reset_triple_meta(rasqal_triple_meta* m)
 {
   int resets = 0;
-  rasqal_variable* var;
-
+  
   if(m->triples_match) {
     rasqal_free_triples_match(m->triples_match);
     m->triples_match = NULL;
   }
 
-  if((var = rasqal_literal_as_variable(t->subject)) && (m->parts & RASQAL_TRIPLE_SUBJECT)) {
-    rasqal_variable_set_value(var,  NULL);
+  if(m->bindings[0] && (m->parts & RASQAL_TRIPLE_SUBJECT)) {
+    rasqal_variable_set_value(m->bindings[0],  NULL);
     resets++;
   }
-  if((var = rasqal_literal_as_variable(t->predicate)) && (m->parts & RASQAL_TRIPLE_PREDICATE)) {
-    rasqal_variable_set_value(var,  NULL);
+  if(m->bindings[1] && (m->parts & RASQAL_TRIPLE_PREDICATE)) {
+    rasqal_variable_set_value(m->bindings[1],  NULL);
     resets++;
   }
-  if((var = rasqal_literal_as_variable(t->object)) && (m->parts & RASQAL_TRIPLE_OBJECT)) {
-    rasqal_variable_set_value(var,  NULL);
+  if(m->bindings[2] && (m->parts & RASQAL_TRIPLE_OBJECT)) {
+    rasqal_variable_set_value(m->bindings[2],  NULL);
     resets++;
   }
-  if((var = rasqal_literal_as_variable(t->origin)) && (m->parts & RASQAL_TRIPLE_ORIGIN)) {
-    rasqal_variable_set_value(var,  NULL);
+  if(m->bindings[3] && (m->parts & RASQAL_TRIPLE_ORIGIN)) {
+    rasqal_variable_set_value(m->bindings[3],  NULL);
     resets++;
   }
 
